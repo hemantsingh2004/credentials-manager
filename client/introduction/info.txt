@@ -1,0 +1,1 @@
+Introduction folder contains an react app intro-page, which as the name suggests will be the initial page shown to the user who appear first-time or haven't logged in.
