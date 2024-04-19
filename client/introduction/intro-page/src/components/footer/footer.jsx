@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Copyright from './copyright';
 import '../../../public/css/footer.css';
 

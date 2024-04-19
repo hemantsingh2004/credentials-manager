@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function Logo(){
     const imgSrc = '../../../public/assets/svg/account_credentials_logo.svg';
