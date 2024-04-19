@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 10px;
+}
+
+body{
+    background-color: black;
+    background-image: url('../assets/png/asfalt-light.png');
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.root,.container{
+    height: 100%;
+    width: 100%;
+}

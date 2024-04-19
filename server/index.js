@@ -7,7 +7,6 @@ import env from "dotenv";
 import session from "express-session";
 import passport from "./passport.js";
 import { encrypt, decrypt } from "./encryption.js";
-import customStrategy from "./passport.js";
 import { addUser } from "./users.js";
 
 env.config();
@@ -35,7 +34,6 @@ app.use(
 );
 app.use(passport.session());
 app.use(passport.initialize()); // Initialize Passport
-
 
 app.post("/api/login", (req, res, next) => {
   passport.authenticate('HeaderAuth', (err, user, info) => {
@@ -125,7 +123,6 @@ app.post("/api/register", async (req, res, next) => {
   }
 });
 
-
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server is up and running");
 });
