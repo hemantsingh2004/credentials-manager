@@ -25,13 +25,13 @@ function Form() {
     setEmail(() => newEmail);
   };
 
-  const handleUsernameChange = (e) => {
-    const newUsername = e.target.value;
+  const handleUsernameChange = (value) => {
+    const newUsername = value;
     setUsername(() => newUsername);
   };
 
-  const handlePasswordChange = (e) => {
-    const newPassword = e.target.value;
+  const handlePasswordChange = (value) => {
+    const newPassword = value;
     setPassword(() => newPassword);
   };
 
@@ -42,8 +42,9 @@ function Form() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    const passwordRegex = /^(?!.*\s)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    if(username !== password){
     if (usernameRegex.test(username)) {
       if (passwordRegex.test(password)) {
         if (confirmPassword === password) {
@@ -78,6 +79,12 @@ function Form() {
       setMessage("Username doesn't obey defined form");
       setUsername("");
     }
+  }else{
+    setMessage("Same Username and Password Used");
+    setConfirmPassword('');
+    setPassword('');
+    setUsername('');
+  }
   };
 
   const isButtonDisabled =

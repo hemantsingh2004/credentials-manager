@@ -72,6 +72,7 @@ input{
 }
 
 .placeholder-red::placeholder{
+  font-size: 1.55rem;
   color: red;
 }
 
