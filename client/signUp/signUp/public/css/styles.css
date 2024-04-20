@@ -96,6 +96,12 @@ button{
   background-color: yellow;
 }
 
+.enabled:active{
+  transform: scale(1.05, 1.05);
+  background-color: yellow;
+  color: green;
+}
+
 /* effects for the Warning transition dialog-box */
 .popup {
   height: 25rem;
