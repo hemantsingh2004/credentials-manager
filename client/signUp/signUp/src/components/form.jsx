@@ -8,10 +8,27 @@ import WarningPopup from "./warning";
 import Message from "./messages";
 
 function Form() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const handleNameChange = (e) => {
+    const newName = e.target.value;
+    setName(() => newName);
+  };
+
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(() => newEmail);
+  };
+
+  const handleUsernameChange = (e) => {
+    const newUsername = e.target.value;
+    setUsername(() => newUsername);
+  };
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
@@ -25,52 +42,70 @@ function Form() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(confirmPassword, password);
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-    if (passwordRegex.test(password)){
-    if (confirmPassword === password) { 
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage("Registration successful!");
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    if (usernameRegex.test(username)) {
+      if (passwordRegex.test(password)) {
+        if (confirmPassword === password) {
+          const response = await fetch("/api/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              name: name,
+              username: username,
+              password: password,
+              email: email,
+            },
+          });
+          const data = await response.json();
+          if (response.ok) {
+            setMessage("Registration successful!");
+          } else {
+            setMessage(data.error); // Assuming server sends an error message
+            setUsername("");
+          }
+        } else {
+          setMessage("Passwords don't Match");
+          setPassword("");
+          setConfirmPassword("");
+        }
       } else {
-        setMessage(data.message); // Assuming server sends an error message
-        setUsername("");
+        setMessage("Password doesn't obey defined form");
+        setPassword("");
+        setConfirmPassword("");
       }
     } else {
-      setMessage("Passwords don't Match");
-      setPassword("");
+      setMessage("Username doesn't obey defined form");
+      setUsername("");
     }
-  }else{
-    setMessage("Password doesn't obey defined form");
-    setPassword('');
-  }
   };
+
+  const isButtonDisabled =
+    !username || !password || !confirmPassword || !email || !name;
+
   return (
     <div className="form">
       <form onSubmit={handleFormSubmit}>
-        <Name />
-        <Email />
+        <Name name={name} onChange={handleNameChange} />
+        <Email email={email} onChange={handleEmailChange} />
         <Username
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleUsernameChange}
           message={message}
         />
-        <Password password={password} onChange={handlePasswordChange} message={message}/>
+        <Password
+          password={password}
+          onChange={handlePasswordChange}
+          message={message}
+        />
         <ConfirmPassword
           confirmPassword={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
         <button
           type="submit"
-          // className={}
+          disabled={isButtonDisabled}
+          className={isButtonDisabled ? "disabled" : "enabled"}
         >
           Register
         </button>

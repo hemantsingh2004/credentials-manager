@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { MongoClient } from "mongodb";
 
 const addUser = async (
+  name,
   userName,
   email,
   password,
@@ -27,6 +28,7 @@ const addUser = async (
     const hashedPassword = await bcrypt.hash(password, 12);
 
     let userInfo = {
+      Fname: name,
       Uname: userName,
       Password: hashedPassword,
       email: email,

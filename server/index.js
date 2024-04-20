@@ -84,10 +84,11 @@ passport.deserializeUser(async (id, done) => {
 });
 
 app.post("/api/register", async (req, res, next) => {
-  const { username, password, email } = req.headers;
-  if (username && password && email) {
+  const {name, username, password, email } = req.headers;
+  if (name && username && password && email) {
     try {
       const registeredUser = await addUser(
+        name,
         username,
         email,
         password,
@@ -109,8 +110,7 @@ app.post("/api/register", async (req, res, next) => {
           });
       });
     } else {
-        console.log("User already present");
-        return res.status(500).json({error: "User already present"});
+        return res.status(500).json({error: "Username taken already"});
     }
     } catch (error) {
       console.error("Error registering user:", error);

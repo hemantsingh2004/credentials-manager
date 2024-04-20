@@ -10,7 +10,7 @@ body {
   height: 100vh;
   background-color: black;
   background-image: url("../assets/asfalt-light.png");
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .container {
@@ -22,6 +22,7 @@ body {
 }
 
 .title {
+  text-align: center;
   margin: 10rem 0 10rem 0;
 }
 
@@ -56,7 +57,7 @@ input{
   color: #000;
 }
 
-.password-error{
+.field-error{
   color: red;
   font-size: 1.2rem;
 }
@@ -79,6 +80,19 @@ button{
   height: 3.5rem;
   width: 45rem;
   color: #000;
+}
+
+.disabled{
+  cursor: not-allowed;
+}
+
+.enabled{
+  cursor: pointer;
+}
+
+.enabled:hover{
+  transform: scale(1.05, 1.05);
+  background-color: yellow;
 }
 
 /* effects for the Warning transition dialog-box */
@@ -122,4 +136,55 @@ button{
 
 .close:hover {
   color: #000; /* Change close button color on hover */
+}
+
+
+@media (max-width: 576px){
+  .title{
+    margin: 6.5rem 0 6.5rem 0;
+  }  
+
+  .title h1{
+    font-size: 4.2rem;
+  }
+
+  .form{
+    width: 90%;
+  }
+
+  .form *{
+    font-size: 1.5rem;
+  }
+
+  .field{
+    margin-top: 1.4rem;
+  }
+
+  input{
+    height: 3rem;
+    width: 60%;
+  }
+
+  .placeholder-red::placeholder{
+    font-size: 1.1rem;
+  }
+
+  .password-error{
+    font-size: 1.1rem;
+  }
+
+  .message{
+    margin-top: 2.8rem;
+  }
+
+  button{
+    margin: 2.4rem 0 1rem 0;
+    height: 2.8rem;
+    width: 100%;
+  }
+
+  .popup{
+    width: 85%;
+    height: 20rem;
+  }
 }

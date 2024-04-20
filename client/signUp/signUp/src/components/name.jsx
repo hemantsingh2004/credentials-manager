@@ -1,10 +1,10 @@
 import React from "react";
 
-function Name(){
+function Name({name, onChange}){
     return(
         <div className="field">
             <label htmlFor="name">Full Name : </label>
-            <input type="text" name="name" id="name" placeholder="Enter Your Name" spellCheck='false' required/>
+            <input type="text" name="name" id="name" placeholder="Enter Your Name" spellCheck='false' value={name} onChange={onChange} required/>
         </div>
     )
 }

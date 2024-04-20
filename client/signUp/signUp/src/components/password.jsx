@@ -7,7 +7,7 @@ function Password({ password, onChange, message }) {
         changePlaceholder(false)
     }
     useEffect(() => {
-      if(message){
+      if(message === "Passwords don't Match" || message === "Password doesn't obey defined form"){
         changePlaceholder(message);
       }
     }, [message]);
@@ -31,7 +31,7 @@ function Password({ password, onChange, message }) {
         type="password"
         value={password}
         onChange={(e) => {
-              normalInp();
+              // normalInp(); //This Effect was discarder later
               checkPassword();
               onChange(e);
         }}
@@ -44,7 +44,7 @@ function Password({ password, onChange, message }) {
         required
       />
     </div>
-    {passwordError && <p className="password-error">{passwordError}</p>}
+    {passwordError && <p className="field-error">{passwordError}</p>}
     </div>
   );
 }
