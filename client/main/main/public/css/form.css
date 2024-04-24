@@ -1,0 +1,27 @@
+.add-account, form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.add-account{
+    min-height: 35rem;
+    width: 100%;
+}
+
+.form{
+    height: 80%;
+}
+
+.close-button{
+    position: absolute;
+    right: 0.1rem;
+    top: 0.1rem;
+    background-color: transparent;
+    border-radius: 0.8rem;
+}
+
+.close-button:hover{
+    background-color: red;
+}

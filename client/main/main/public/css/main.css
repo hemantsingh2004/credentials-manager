@@ -1,0 +1,98 @@
+.main{
+    min-height: calc(100vh - 7rem);
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-bar{
+    background-color: #424A5B;
+    position: relative;
+    top: 5rem;
+    width: 80vw;
+    height: 5rem;
+    border-radius: 1rem;
+    border: 0.4rem solid #555555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add{
+    height: 100%;
+    width: 12rem;
+}
+
+img{
+    filter: invert(100%) sepia(0%) saturate(7499%) hue-rotate(183deg) brightness(97%) contrast(100%);
+}
+
+.add>button, .sort-option>button{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    font-size: 1.9rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.add>button:hover, .add>button:active{
+    background-color: #4CAF50;
+}
+
+.options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+}
+
+.search-bar{
+    height: 70%;
+    width: 16rem;
+    margin: 0 1rem;
+}
+
+.search-bar input{
+    height: 100%;
+    width: 100%;
+    /* background-color: #717786; */
+    /* background-color: white; */
+    border: 0.2rem solid darkgrey;
+    border-radius: 1rem;
+    background-image: url("../../../public/assets/svg/search_logo.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 0.5rem) center;
+    background-size: 2rem;
+    font-size: 1.8rem;
+}
+
+input{
+    background-color: #717786;
+}
+
+.sort-option{
+    height: 90%;
+    width: 8rem;
+}
+
+.sort-option>button:hover, .sort-option>button:active{
+    background-color: #636f88;
+}
+
+.add-account-form{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222831;
+    /* min-height: 35rem; */
+    width: 60vw;
+    border-radius: 0.8rem;
+    border: 0.2rem solid black;
+}

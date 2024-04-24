@@ -123,6 +123,20 @@ app.post("/api/register", async (req, res, next) => {
   }
 });
 
+app.get("/api/user", (req, res) => {
+  try {
+    if (!req.user || !req.user['Fname']) {
+      throw new Error('User data not available');
+    }
+    const username = req.user['Fname'];
+    return res.status(200).json({ username });
+  } catch (err) {
+    console.error('Error fetching username:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 app.listen(process.env.PORT, () => {
   console.log("Server is up and running");
 });

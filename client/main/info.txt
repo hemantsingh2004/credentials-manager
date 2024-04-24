@@ -1,0 +1,1 @@
+This page is the main functioning section of the app, it is here where users will view their credential data and can add new credential data. 

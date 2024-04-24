@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
+    background-color: #222831;
 }
 
 .navbar-logo .logo{
@@ -44,6 +44,23 @@
 
 .navbar a:hover{
     color: yellowgreen;
+}
+
+.user-logo{
+    height: 4rem;
+    width: 4rem;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-logo p{
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    color: black;
 }
 
 @media (max-width: 768px){
