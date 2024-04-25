@@ -7,14 +7,14 @@ function FormFields({ formFields, setFormFields, closeUrl, addUrl }) {
     const updatedFormFields = [...formFields];
     updatedFormFields[index] = {
       ...updatedFormFields[index],
-      [key]: value
+      [key]: value,
     };
     setFormFields(updatedFormFields);
   };
 
   const handleAddField = () => {
     if (newPair.label !== "" && newPair.value !== "") {
-      setFormFields(prevFormFields => [...prevFormFields, newPair]);
+      setFormFields((prevFormFields) => [...prevFormFields, newPair]);
       setNewPair({ label: "", value: "" });
     } else {
       alert("Please fill in both the label and value fields.");
@@ -46,7 +46,11 @@ function FormFields({ formFields, setFormFields, closeUrl, addUrl }) {
             className="form-field-value-input"
             disabled={true}
           />
-          <button onClick={() => handleRemove(index)} className="remove-pair-input" type="button">
+          <button
+            onClick={() => handleRemove(index)}
+            className="remove-pair-input"
+            type="button"
+          >
             <img src={closeUrl} alt="Remove Fields" />
           </button>
         </div>
@@ -66,7 +70,11 @@ function FormFields({ formFields, setFormFields, closeUrl, addUrl }) {
           type="text"
           className="form-field-value-input"
         />
-        <button onClick={handleAddField} className="add-pair-input" type="button">
+        <button
+          onClick={handleAddField}
+          className="add-pair-input"
+          type="button"
+        >
           <img src={addUrl} alt="Add Field Pairs" />
         </button>
       </div>

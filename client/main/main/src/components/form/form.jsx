@@ -19,22 +19,29 @@ function AddAccountForm({ formKey, toggleForm }) {
   const [email, setEmail] = useState("");
   const [formFields, setFormFields] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newAccount = {
       accountName: accountName,
       signUpType: signUpType,
       email: email,
     };
-    if(signUpType === "email"){
+    if (signUpType === "email") {
       newAccount.password = password;
-    } else if(signUpType === "third-party"){
+    } else if (signUpType === "third-party") {
       newAccount.thirdParty = thirdParty;
     }
-    formFields.forEach(obj => {
+    formFields.forEach((obj) => {
       newAccount[`otherDetail-${obj.label}`] = obj.value;
-    })
-    console.log(newAccount);
+    });
+    const credentials = JSON.stringify(newAccount);
+    const result = await fetch("/api/addCredential", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", credentials },
+    });
+
+    const data = await result.json();
+    console.log(data.result);
     handleClose();
   };
 
@@ -46,22 +53,43 @@ function AddAccountForm({ formKey, toggleForm }) {
     setEmail("");
     setFormFields([]);
     toggleForm();
-  }
+  };
 
   return (
     <div className="add-account">
       <h3>Add Account Credentials</h3>
       <form key={formKey} onSubmit={handleSubmit}>
-        <AccountName accountName={accountName} setAccountName={setAccountName} />
-        <SignUpType setSignUpType={setSignUpType} thirdPary={thirdParty} setThirdParty={setThirdParty} isThirdParty={isThirdParty} setIsThirdParty={setIsThirdParty} signUpType={signUpType} password={password} setPassword={setPassword} isPassword={isPassword} setIsPassword={setIsPassword}/>
+        <AccountName
+          accountName={accountName}
+          setAccountName={setAccountName}
+        />
+        <SignUpType
+          setSignUpType={setSignUpType}
+          thirdPary={thirdParty}
+          setThirdParty={setThirdParty}
+          isThirdParty={isThirdParty}
+          setIsThirdParty={setIsThirdParty}
+          signUpType={signUpType}
+          password={password}
+          setPassword={setPassword}
+          isPassword={isPassword}
+          setIsPassword={setIsPassword}
+        />
         <Email email={email} setEmail={setEmail} />
-        <FormFields formFields={formFields} setFormFields={setFormFields} closeUrl={closeUrl} addUrl={addUrl}/>
-        <Buttons/>
-        <button className="close-button" onClick={handleClose} type="button"><img src={closeUrl} alt="close logo" /></button>
+        <FormFields
+          formFields={formFields}
+          setFormFields={setFormFields}
+          closeUrl={closeUrl}
+          addUrl={addUrl}
+        />
+        <Buttons />
+        <button className="close-button" onClick={handleClose} type="button">
+          <img src={closeUrl} alt="close logo" />
+        </button>
       </form>
       <p>*Don't forget to add the fields before submitting</p>
     </div>
   );
-};
+}
 
 export default AddAccountForm;

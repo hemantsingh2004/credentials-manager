@@ -6,14 +6,18 @@ import { fileURLToPath } from "url";
 import env from "dotenv";
 import session from "express-session";
 import passport from "./passport.js";
-import { encrypt, decrypt } from "./encryption.js";
 import { addUser } from "./users.js";
+import { addCredential } from "./credentials.js";
 
 env.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url)); //Getting the file path to Main
 const app = express();
 const uri = process.env.DB_URI;
 const dbName = process.env.DB_NAME;
+const accEnKey = process.env.ACCOUNT_EN_KEY;
+const passEnKey = process.env.PASS_EN_KEY;
+const detailEnKey = process.env.DETAILS_EN_KEY;
+const credentialsCollection = process.env.CREDENTIALS_COLLECTION;
 
 app.use(express.json()); //Parse JSON bodies
 // app.use(express.urlencoded({ extended: true })); //Initialized the middleware
@@ -56,7 +60,7 @@ app.post("/api/login", (req, res, next) => {
 
 app.post("/api/logout", (req, res) => {
   req.logout((err) => {
-        if(err) console.log(err);
+        if(err) console.error(err);
     });
   res.status(200).send({ message: "Logout successful" });
 });
@@ -135,6 +139,17 @@ app.get("/api/user", (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+app.post("/api/addCredential", async (req, res) => {
+  const credentials = req.headers.credentials;
+  try{
+  const result = await addCredential(credentials, req.user, uri, dbName, credentialsCollection, accEnKey, passEnKey, detailEnKey);
+  return res.status(200).json({ result });
+  } catch(err) {
+    console.error("An error occured while adding credentials : ",err);
+    return res.status(500).json({ error: "Couldn't Add Credentials"});
+  }
+})
 
 
 app.listen(process.env.PORT, () => {
