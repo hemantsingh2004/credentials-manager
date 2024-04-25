@@ -7,11 +7,31 @@
 
 .add-account{
     min-height: 35rem;
-    width: 100%;
+    max-height: 65vh;
+    overflow: scroll;
+    width: 70vw;
 }
 
-.form{
+.add-account::-webkit-scrollbar{
+    display: none;
+}
+
+.add-account h3{
+    margin: 3.2rem 0rem;
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 900;
+}
+
+form{
     height: 80%;
+    max-width: 45rem;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
 }
 
 .close-button{
@@ -24,4 +44,113 @@
 
 .close-button:hover{
     background-color: red;
+    cursor: pointer;
+}
+
+.form-field{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input::placeholder{
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+select{
+    width: 15rem;
+    height: 2.5rem;
+    color: black;
+    font-size: 1.7rem;
+}
+
+option{
+    color:black;
+    font-size: 1.8rem;
+}
+
+.signUpType{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+    gap: 1.5rem;
+}
+
+label{
+    font-size: 2rem;
+}
+
+input{
+    font-size: 2rem;
+    color: black;
+}
+
+.buttons button{
+    background-color: #717786;
+    color: white;
+    height: 100%;
+    width: 12rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    height: 4rem;
+}
+
+.submit-button:hover, .submit-button:active{
+    transform: scale(1.08, 1.08);
+    background-color: green;
+    cursor: pointer;
+}
+
+.form-field-label-input, .form-field-value-input{
+    width: 18rem;
+}
+
+.remove-pair-input, .add-pair-input{
+    background-color: red;
+    border-radius: 0.2rem;
+    height: 2.3rem;
+    width: 2.3rem;
+}
+
+.remove-pair-input:hover, .add-pair-input:hover{
+    cursor: pointer;
+}
+
+.add-account p{
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 576px){
+    .add-account{
+        width: 90vw;
+    }
+
+    .add-account input::placeholder{
+        font-size: 1.7rem;
+    }
+
+    .add-account input{
+        font-size: 1.8rem;
+        max-width: 22rem
+    }
+
+    .add-account option{
+        font-size: 1.5rem;
+    }
+
+    .add-account label{
+        font-size: 1.8rem;
+    }
+
+    .form-field-label-input, .form-field-value-input{
+        width: 15rem;
+    }
 }

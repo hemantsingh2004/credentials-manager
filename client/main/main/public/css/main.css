@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
 }
 
 .add{
@@ -74,6 +75,9 @@ img{
 
 input{
     background-color: #717786;
+    height: 2.5rem;
+    width: 25rem;
+    font-size: 1.8rem;
 }
 
 .sort-option{
@@ -92,7 +96,7 @@ input{
     transform: translate(-50%, -50%);
     background-color: #222831;
     /* min-height: 35rem; */
-    width: 60vw;
     border-radius: 0.8rem;
     border: 0.2rem solid black;
+    z-index: 2;
 }
