@@ -1,0 +1,67 @@
+.mainBody *{
+    text-align: center;
+}
+
+.mainBody{
+    height: calc(100vh - 10rem);
+    width: 80%;
+    margin: 6rem auto auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+}
+
+.content h1{
+    font-size: 8rem;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 3rem;
+}
+
+.content p{
+    width: 70%;
+    margin: auto;
+    font-size: 2rem;
+    color: white;
+    font-weight: 300;
+}
+
+span{
+    font-size: 2.1rem;
+    color: yellow;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.button{
+    background-color: greenyellow;
+    padding: 1rem 2rem;
+    width: 14rem;
+    height: 6rem;
+    font-size: 2.2rem;
+}
+
+.button:hover{
+    transform: scale(1.05, 1.05);
+    background-color: white;
+    color: green;
+    cursor:pointer;
+}
+
+@media (max-width: 576px){
+    .content h1{
+        font-size: 6rem;
+    }
+
+    .content p{
+        width: 100%;
+        font-size: 1.7rem;
+    }
+}

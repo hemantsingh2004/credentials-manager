@@ -40,7 +40,7 @@ function ShowCredentials({ selectedOption, credentials }) {
             <div className="credential-sign-up">
               <p>
                 {credential.signUpType !== "none" && credential.signUpType} 
-                {credential.email && credential.signUpType && <span> &bull; </span>}
+                {credential.email && credential.signUpType !== "none" && <span> &bull; </span>}
                 {credential.email}
               </p>    
             </div>

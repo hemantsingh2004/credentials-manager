@@ -37,6 +37,11 @@ app.use(
 app.use(passport.session());
 app.use(passport.initialize()); // Initialize Passport
 
+app.use("/register", express.static(path.join(__dirname, 'build/register')));
+app.use("/login", express.static(path.join(__dirname, 'build/login')));
+app.use("/", express.static(path.join(__dirname, 'build/IntroPage')));
+app.use("/main", express.static(path.join(__dirname, "build/main")));
+
 app.post("/api/login", (req, res, next) => {
   passport.authenticate('HeaderAuth', (err, user, info) => {
     if (err) {
@@ -161,8 +166,20 @@ app.post("/api/getCredentials", async (req, res) => {
   }
 })
 
-app.get("/signUp", (req, res) => {
-  res.redirect("https://www.google.com");
+app.get("/register", (req, res) => {
+  res.sendFile(path.join(__dirname, "build/register", "index.html"));
+})
+
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "build/login", "index.html"));
+})
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build/IntroPage", "index.html"));
+})
+
+app.get("/main", (req, res) => {
+  res.sendFile(path.join(__dirname, "build/main", "index.html"));
 })
 
 app.listen(process.env.PORT, () => {

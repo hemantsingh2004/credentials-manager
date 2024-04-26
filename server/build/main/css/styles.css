@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 10px;
+    color: white;
+}
+
+body{
+    /* background-color: #31363F; */
+    background-color: black;
+    background-image: url('../assets/png/asfalt-light.png');
+}
+
+.no-user-heading{
+    margin-top: 21vh;
+    font-size: 3rem;
+    font-weight: 300;
+    margin-right: 40vw;
+    margin-left: 10vw;
+}
+
+.no-user-heading a{
+    color: aqua;
+    font-size: 3.2rem;
+    text-decoration: underline;
+}
