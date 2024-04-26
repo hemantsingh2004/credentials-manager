@@ -8,6 +8,7 @@
 body{
     background-color: black;
     background-image: url('../assets/png/asfalt-light.png');
+    /* background-color: #31363F; */
     height: 100vh;
     width: 100%;
     overflow: hidden;

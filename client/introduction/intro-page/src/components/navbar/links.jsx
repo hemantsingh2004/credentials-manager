@@ -5,10 +5,10 @@ function Links(){
         <div className='navbar-links'>
             <ul>
                 <li>
-                    <a href=''>Contact</a>
+                    <a href='https://www.linkedin.com/in/chaudhary-hemant-singh/'>Contact</a>
                 </li>
                 <li>
-                    <a href=''>About</a>
+                    <a href='https://www.linkedin.com/in/chaudhary-hemant-singh/'>About</a>
                 </li>
                 <li>
                     <a href='/login'>Login</a>

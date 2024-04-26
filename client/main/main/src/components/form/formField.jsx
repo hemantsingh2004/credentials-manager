@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function FormFields({ formFields, setFormFields, closeUrl, addUrl }) {
+function FormFields({ formFields, setFormFields, closeUrl, addUrl, handleKeyDown, }) {
   const [newPair, setNewPair] = useState({ label: "", value: "" });
 
   const handleChange = (index, key, value) => {
@@ -13,11 +13,11 @@ function FormFields({ formFields, setFormFields, closeUrl, addUrl }) {
   };
 
   const handleAddField = () => {
-    if (newPair.label !== "" && newPair.value !== "") {
+    if (newPair.label !== "") {
       setFormFields((prevFormFields) => [...prevFormFields, newPair]);
       setNewPair({ label: "", value: "" });
     } else {
-      alert("Please fill in both the label and value fields.");
+      alert("Please fill the label field.");
     }
   };
 
@@ -62,6 +62,7 @@ function FormFields({ formFields, setFormFields, closeUrl, addUrl }) {
           placeholder="New Label"
           type="text"
           className="form-field-label-input"
+          onKeyDown={handleKeyDown}
         />
         <input
           value={newPair.value}
@@ -69,6 +70,7 @@ function FormFields({ formFields, setFormFields, closeUrl, addUrl }) {
           placeholder="New Value"
           type="text"
           className="form-field-value-input"
+          onKeyDown={handleKeyDown}
         />
         <button
           onClick={handleAddField}

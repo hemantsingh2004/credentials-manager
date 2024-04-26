@@ -19,6 +19,12 @@ function AddAccountForm({ formKey, toggleForm }) {
   const [email, setEmail] = useState("");
   const [formFields, setFormFields] = useState([]);
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newAccount = {
@@ -62,6 +68,7 @@ function AddAccountForm({ formKey, toggleForm }) {
         <AccountName
           accountName={accountName}
           setAccountName={setAccountName}
+          handleKeyDown={handleKeyPress}
         />
         <SignUpType
           setSignUpType={setSignUpType}
@@ -74,13 +81,15 @@ function AddAccountForm({ formKey, toggleForm }) {
           setPassword={setPassword}
           isPassword={isPassword}
           setIsPassword={setIsPassword}
+          handleKeyDown={handleKeyPress}
         />
-        <Email email={email} setEmail={setEmail} />
+        <Email email={email} setEmail={setEmail} handleKeyDown={handleKeyPress} />
         <FormFields
           formFields={formFields}
           setFormFields={setFormFields}
           closeUrl={closeUrl}
           addUrl={addUrl}
+          handleKeyDown={handleKeyPress}
         />
         <Buttons />
         <button className="close-button" onClick={handleClose} type="button">
@@ -88,6 +97,7 @@ function AddAccountForm({ formKey, toggleForm }) {
         </button>
       </form>
       <p>*Don't forget to add the fields before submitting</p>
+      <p className="newValueInfo">*New Value Fields can be omitted in case of no need of them</p>
     </div>
   );
 }

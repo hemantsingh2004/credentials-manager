@@ -7,16 +7,14 @@ import env from "dotenv";
 import session from "express-session";
 import passport from "./passport.js";
 import { addUser } from "./users.js";
-import { addCredential } from "./credentials.js";
+import { addCredential, getCredentials } from "./credentials.js";
 
 env.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url)); //Getting the file path to Main
 const app = express();
 const uri = process.env.DB_URI;
 const dbName = process.env.DB_NAME;
-const accEnKey = process.env.ACCOUNT_EN_KEY;
-const passEnKey = process.env.PASS_EN_KEY;
-const detailEnKey = process.env.DETAILS_EN_KEY;
+const enKey = process.env.EN_KEY;
 const credentialsCollection = process.env.CREDENTIALS_COLLECTION;
 
 app.use(express.json()); //Parse JSON bodies
@@ -32,7 +30,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 1000 * 60 * 60, //user info will saved for 1 hours max
+      maxAge: 1000 * 60 * 60 * 24, //user info will saved for 24 hours max
     },
   })
 );
@@ -143,7 +141,7 @@ app.get("/api/user", (req, res) => {
 app.post("/api/addCredential", async (req, res) => {
   const credentials = req.headers.credentials;
   try{
-  const result = await addCredential(credentials, req.user, uri, dbName, credentialsCollection, accEnKey, passEnKey, detailEnKey);
+  const result = await addCredential(credentials, req.user, uri, dbName, credentialsCollection, enKey);
   return res.status(200).json({ result });
   } catch(err) {
     console.error("An error occured while adding credentials : ",err);
@@ -151,6 +149,21 @@ app.post("/api/addCredential", async (req, res) => {
   }
 })
 
+app.post("/api/getCredentials", async (req, res) => {
+  const rawOptions = req.headers.options;
+  const options = JSON.parse(rawOptions);
+  try{
+    const result = await getCredentials(options.keywords, req.user, uri, dbName, credentialsCollection, enKey);
+    return res.status(200).json({ result });
+  } catch(err) {
+    console.error("An error occured while retrieving credentials : ", err);
+    return res.status(500).json({ error: "Couldn't Get Credentials" });
+  }
+})
+
+app.get("/signUp", (req, res) => {
+  res.redirect("https://www.google.com");
+})
 
 app.listen(process.env.PORT, () => {
   console.log("Server is up and running");

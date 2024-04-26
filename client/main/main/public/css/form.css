@@ -125,7 +125,13 @@ input{
 
 .add-account p{
     font-size: 1.8rem;
-    margin-bottom: 3rem;
+}
+
+.newValueInfo{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 90%;
 }
 
 @media (max-width: 576px){

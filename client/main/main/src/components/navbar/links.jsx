@@ -21,10 +21,10 @@ const Links = () => {
         <div className='navbar-links'>
             <ul>
                 <li>
-                    <a href=''>Contact</a>
+                    <a href='https://www.linkedin.com/in/chaudhary-hemant-singh/'>Contact</a>
                 </li>
                 <li>
-                    <a href=''>About</a>
+                    <a href='https://www.linkedin.com/in/chaudhary-hemant-singh/'>About</a>
                 </li>
                 <li>
                     <div className="user-logo"><p>{username ? username.slice(0, 1).toUpperCase() : "?"}</p></div>

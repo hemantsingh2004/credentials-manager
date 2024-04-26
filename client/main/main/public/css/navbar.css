@@ -6,7 +6,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222831;
+    /* background-color: #222831; */
+    /* background-color: black; */
+    background-color: #10161c;
+    z-index: 999;
 }
 
 .navbar-logo .logo{

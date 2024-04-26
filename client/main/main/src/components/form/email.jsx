@@ -1,6 +1,6 @@
 import React from "react";
 
-function Email({ email, setEmail }) {
+function Email({ email, setEmail, handleKeyDown }) {
   return (
     <div className="form-field">
       <label htmlFor="email-used">Email Used</label>
@@ -12,7 +12,7 @@ function Email({ email, setEmail }) {
         onChange={(e) => setEmail(e.target.value)}
         className="form-field-input"
         placeholder="Enter Email Used"
-        required
+        onKeyDown={handleKeyDown}
       />
     </div>
   );

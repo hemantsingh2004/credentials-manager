@@ -1,17 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../../public/css/main.css";
 import AddAccountForm from '../form/form';
+import ShowCredentials from './showCredentials';
+import CustomSelect from './sortButton';
+import SearchBar from './searchBar';
 
 function Main(){
     const addUrl = "../../../public/assets/svg/add_logo.svg";
     const sortUrl = "../../../public/assets/svg/sort_logo.svg";
 
+    const [searchValue, setSearchValue] = useState("");
+    const [selectedOption, setSelectedOption] = useState("Accounts");
     const [formKey, setFormKey] = useState(0); // Key to force re-mounting of the form
     const [formHidden, setFormHidden] = useState(true);
+    const [credentials, setCredentials] = useState([]);
     const toggleForm = () => {
     setFormHidden(!formHidden);
     setFormKey((prevKey) => prevKey + 1); // Increment key to remount the form
   };
+
+  useEffect(() => {
+    const fetchData = async() => {
+    const rawHeaderOptions = {keywords : searchValue,};
+    const options = JSON.stringify(rawHeaderOptions);
+    const getCredentials = await fetch("/api/getCredentials", {method: "POST", headers: {"Content-Type": "application/json", options}});
+    const data = await getCredentials.json();
+    setCredentials(data.result);
+    }
+
+    fetchData();
+  }, [searchValue, formHidden])
 
     return(
         <div className="main">
@@ -21,14 +39,11 @@ function Main(){
                     <button onClick={toggleForm}>Add <img src={addUrl} alt="Add logo" /></button>
                 </div>
                 <div className="options">
-                    <div className="sort-option">
-                        <button>Sort <img src={sortUrl} alt="Sort logo" /></button>
-                    </div>
-                    <div className="search-bar">
-                        <input type="text" name="searchBar" id="searchBar"/>
-                    </div>
+                    <CustomSelect sortUrl={sortUrl} setSelectedOption={setSelectedOption} />
+                    <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
                 </div>
             </div>
+            <ShowCredentials selectedOption={selectedOption} credentials={credentials}/>
         </div>
     )
 }

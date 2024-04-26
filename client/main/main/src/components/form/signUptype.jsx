@@ -11,6 +11,7 @@ function SignUpType({
   setPassword,
   isPassword,
   setIsPassword,
+  handleKeyDown,
 }) {
   const handleOnChange = (value) => {
     setSignUpType(value);
@@ -43,6 +44,7 @@ function SignUpType({
           <option value="google">Google</option>
           <option value="email">Email</option>
           <option value="third-party">Third party</option>
+          <option value="none">None</option>
         </select>
       </div>
       <input
@@ -53,6 +55,7 @@ function SignUpType({
         value={thirdPary}
         onChange={(e) => setThirdParty(e.target.value)}
         placeholder="Enter Third Party Name"
+        onKeyDown={handleKeyDown}
         required={isThirdParty}
       />
 
@@ -64,6 +67,7 @@ function SignUpType({
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Enter The Password Used"
+        onKeyDown={handleKeyDown}
       />
     </div>
   );
