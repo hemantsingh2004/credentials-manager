@@ -18,7 +18,7 @@ Each feature was built with its own standalone **React app**, connected to a com
 
 ## 🛠 Tech Stack
 
-- **Frontend**: Multiple React.js apps (Material UI used in places)
+- **Frontend**: Multiple React.js apps
 - **Backend**: Express.js + Node.js
 - **Database**: MongoDB
 
@@ -65,4 +65,4 @@ If you’re early in your full-stack journey and make similar “mistakes” —
 
 ---
 
-> Made by [Hemant Singh](https://github.com/hemantsingh2004) while learning — and still learning.
+> Made by [Hemant Singh](https://github.com/hemantsinghdev) while learning — and still learning.
